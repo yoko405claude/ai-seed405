@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-SEED405 - デジタルスキル学習サイト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .chat-bubble-animation {
+            animation: fadeInUp 0.3s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .typing-indicator {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- ヘッダー -->
+    <header class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">AI-SEED405</h1>
+                <p class="text-lg text-gray-600">AIとともに成長するデジタルスキル学習</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- 自己紹介セクション -->
+        <section class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">こんにちは！yoko405です</h2>
+            <div class="text-gray-700 leading-relaxed space-y-4">
+                <p>「みんな当たり前にパソコンを使っているのに、私だけついていけない」</p>
+                <p>「タイピングがなかなか身に付かない」</p>
+                <p>「Word・Excelができないせいで、書類作成に何時間もかかってしまう」</p>
+                <p>「パソコンを習いたいけど、教室に通う時間もお金もない」</p>
+                <p class="text-lg font-semibold text-blue-600">そんなお悩み、ありませんか？</p>
+                
+                <p class="mt-6">私も同じような経験をしてきました。でも大丈夫です。正しい順序で、少しずつ練習すれば、必ずできるようになります。</p>
+                <p>このサイトでは、自宅にいながら自分のペースで学べるよう、基礎から実践まで分かりやすくお伝えしていきます。</p>
+                <p>2児の母でもある私だからこそお伝えできることもあるはず。あなたの成長のきっかけになりますように。</p>
+            </div>
+        </section>
+
+        <!-- 学習コンテンツセクション -->
+        <section class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">AI-SEED405で学べること</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-blue-600 mb-3">🔤 基礎からしっかり</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>• タイピング練習</li>
+                        <li>• ファイルの保存・整理</li>
+                        <li>• インターネットの安全な使い方</li>
+                    </ul>
+                </div>
+                
+                <div class="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-green-600 mb-3">💼 実践的なスキル</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>• Word：文書作成、レポート作成</li>
+                        <li>• Excel：表計算、データ整理</li>
+                        <li>• PowerPoint：プレゼンテーション</li>
+                    </ul>
+                </div>
+                
+                <div class="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-purple-600 mb-3">🤖 AIツールの活用</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>• ChatGPTなどのAIツール</li>
+                        <li>• AIを使った効率的な作業</li>
+                        <li>• 未来のスキルを今から</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-blue-50 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-blue-800 mb-3">📚 学習スタイル</h3>
+                <ul class="text-blue-700 space-y-2">
+                    <li>✓ 自分のペースで進められる</li>
+                    <li>✓ 実践的な練習問題</li>
+                    <li>✓ 分からない時はいつでも質問OK</li>
+                    <li>✓ 忙しい方でも続けられる設計</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- AIチャットボットセクション -->
+        <section class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">💬 AIアシスタントに質問してみよう</h2>
+            <p class="text-gray-600 mb-6">基本的なご質問にお答えします。お気軽にお試しください！</p>
+            
+            <!-- チャットボット -->
+            <div id="chatbot" class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden border">
+                <!-- ヘッダー -->
+                <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <span class="text-blue-600 font-bold">🤖</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">AI-SEED405 アシスタント</h3>
+                            <p class="text-sm opacity-90">パソコン・AIに関するご質問にお答えします</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- メッセージエリア -->
+                <div id="messages" class="h-96 overflow-y-auto p-4 space-y-4 bg-gray-50">
+                    <div class="flex justify-start">
+                        <div class="flex items-start space-x-2 max-w-xs lg:max-w-md">
+                            <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center">
+                                🤖
+                            </div>
+                            <div class="bg-white text-gray-800 rounded-lg rounded-bl-none shadow-md px-4 py-2">
+                                <div class="text-sm">こんにちは！AI-SEED405のAIアシスタントです。パソコンやAIについてのご質問にお答えします。どのようなことでお困りですか？</div>
+                                <div class="text-xs opacity-70 mt-1" id="bot-time"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 入力エリア -->
+                <div class="p-4 bg-white border-t">
+                    <div class="flex space-x-2">
+                        <input
+                            type="text"
+                            id="messageInput"
+                            placeholder="ご質問をどうぞ..."
+                            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                        <button
+                            id="sendButton"
+                            class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 flex items-center space-x-2"
+                        >
+                            <span>📤</span>
+                            <span>送信</span>
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">
+                        基本的なご質問にお答えいたします。より詳しいサポートは有料コースでご提供しています。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>&copy; 2025 AI-SEED405. All rights reserved.</p>
+            <p class="text-gray-400 mt-2">一緒にデジタルスキルを育てていきましょう</p>
+        </div>
+    </footer>
+
+    <script>
+        // チャットボット機能
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        let messageId = 0;
+
+        // 現在時刻を表示
+        document.getElementById('bot-time').textContent = new Date().toLocaleTimeString('ja-JP', { 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
+
+        // よくある質問データベース
+        const qaDatabase = {
+            'タイピング': {
+                keywords: ['タイピング', 'タイプ', 'キーボード', '入力'],
+                response: 'タイピング練習は基礎中の基礎ですね！\n\n【おすすめの練習方法】\n• 正しい指の位置（ホームポジション）から始める\n• 最初は速度より正確性を重視\n• 無料サイト「寿司打」や「e-typing」で楽しく練習\n• 毎日10-15分の継続が効果的\n\n詳しい練習方法は学習コンテンツページでご紹介しています！'
+            },
+            'Word': {
+                keywords: ['word', 'ワード', '文書', '作成'],
+                response: 'Wordは文書作成の基本ツールです！\n\n【初心者向けの学習順序】\n1. 基本的な文字入力と保存\n2. 文字の装飾（太字、色変更）\n3. 表の作成\n4. 画像の挿入\n5. ページ設定と印刷\n\n履歴書や報告書作成など、実践的な使い方から学ぶのがおすすめです。'
+            },
+            'Excel': {
+                keywords: ['excel', 'エクセル', '表計算', '関数'],
+                response: 'Excelは表計算やデータ整理に便利です！\n\n【基本的な機能】\n• 家計簿や住所録の作成\n• 簡単な計算（SUM、AVERAGE関数）\n• グラフの作成\n• データの並び替え・フィルター\n\n最初は家計簿作成から始めると、実生活で役立ちながら学習できます。'
+            },
+            'PowerPoint': {
+                keywords: ['powerpoint', 'パワーポイント', 'プレゼン', '発表'],
+                response: 'PowerPointはプレゼンテーション作成ツールです！\n\n【基本的な作成手順】\n1. スライドの追加と編集\n2. 文字とレイアウトの調整\n3. 画像や図形の挿入\n4. アニメーション効果\n5. スライドショーの実行\n\n自己紹介資料や旅行の思い出まとめなど、楽しいテーマから始めるのがおすすめです。'
+            },
+            'AI': {
+                keywords: ['ai', 'chatgpt', '人工知能', 'ＡＩ'],
+                response: 'AIツールは現代の必須スキルになってきています！\n\n【基本的な活用方法】\n• 文章の作成・校正\n• アイデア出しや企画立案\n• 翻訳や要約\n• 学習のサポート\n\n【注意点】\n• 情報の正確性を確認する\n• 個人情報は入力しない\n• あくまでサポートツールとして活用\n\n正しく使えば、作業効率が大幅に向上します！'
+            },
+            '料金': {
+                keywords: ['料金', '価格', '費用', '値段', 'プラン'],
+                response: '料金について、ありがとうございます！\n\n現在、サービス内容と料金プランを準備中です。\n\n【想定しているサービス】\n• 基礎コース：タイピング〜基本操作\n• 実践コース：Word/Excel/PowerPoint\n• AIツール活用コース\n• 個別サポート付きプラン\n\n詳細は近日公開予定です。ご興味をお持ちいただき、ありがとうございます！'
+            },
+            '初心者': {
+                keywords: ['初心者', 'はじめて', '初めて', '不安', '難しい'],
+                response: '初心者の方も安心してください！\n\n【AI-SEED405の特徴】\n• 基礎の基礎から丁寧に説明\n• 自分のペースで学習可能\n• 実生活で使える内容から開始\n• 質問しやすい環境\n\n「パソコンに触ったことがない」という方でも、ステップバイステップで進められます。一緒に頑張りましょう！'
+            }
+        };
+
+        function findBestResponse(userInput) {
+            const input = userInput.toLowerCase();
+            
+            for (const [category, data] of Object.entries(qaDatabase)) {
+                if (data.keywords.some(keyword => input.includes(keyword))) {
+                    return data.response;
+                }
+            }
+            
+            if (input.includes('こんにちは') || input.includes('はじめまして') || input.includes('よろしく')) {
+                return 'こんにちは！どのようなことについて知りたいですか？\n\n【よくあるご質問】\n• タイピングの練習方法\n• Word・Excel・PowerPointの基本\n• AIツールの活用方法\n• 初心者向けの学習方法\n• 料金プランについて\n\n何でもお気軽にお聞きください！';
+            }
+            
+            return 'ご質問ありがとうございます！\n\n申し訳ございませんが、その内容については詳しくお答えできません。\n\n【お答えできる内容】\n• パソコンの基本操作\n• Word・Excel・PowerPointの使い方\n• タイピング練習方法\n• AIツールの活用\n• 学習方法について\n\nより具体的なご質問や、上記以外の内容については、有料コースをご利用いただくか、学習コンテンツページをご確認ください。';
+        }
+
+        function addMessage(content, isUser = false) {
+            messageId++;
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex ${isUser ? 'justify-end' : 'justify-start'} chat-bubble-animation`;
+            
+            const time = new Date().toLocaleTimeString('ja-JP', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            
+            messageDiv.innerHTML = `
+                <div class="flex items-start space-x-2 max-w-xs lg:max-w-md ${isUser ? 'flex-row-reverse space-x-reverse' : ''}">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center ${
+                        isUser ? 'bg-blue-500 text-white' : 'bg-purple-500 text-white'
+                    }">
+                        ${isUser ? '👤' : '🤖'}
+                    </div>
+                    <div class="px-4 py-2 rounded-lg ${
+                        isUser 
+                            ? 'bg-blue-500 text-white rounded-br-none' 
+                            : 'bg-white text-gray-800 rounded-bl-none shadow-md'
+                    }">
+                        <pre class="whitespace-pre-wrap font-sans text-sm">${content}</pre>
+                        <div class="text-xs opacity-70 mt-1">${time}</div>
+                    </div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.className = 'flex justify-start';
+            typingDiv.innerHTML = `
+                <div class="flex items-start space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center">
+                        🤖
+                    </div>
+                    <div class="bg-white text-gray-800 rounded-lg rounded-bl-none shadow-md px-4 py-2">
+                        <div class="flex space-x-1">
+                            <div class="w-2 h-2 bg-gray-400 rounded-full typing-indicator"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full typing-indicator" style="animation-delay: 0.1s;"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full typing-indicator" style="animation-delay: 0.2s;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingDiv = document.getElementById('typing-indicator');
+            if (typingDiv) {
+                typingDiv.remove();
+            }
+        }
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+            
+            addMessage(message, true);
+            messageInput.value = '';
+            
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                removeTypingIndicator();
+                const response = findBestResponse(message);
+                addMessage(response);
+            }, 2000);
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
